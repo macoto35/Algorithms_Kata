@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Finding Route</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <style>
+      .box {
+        display: inline-block;
+        width: 25px;
+        text-align: center;
+        border: 0.5px solid #f1f1f1;
+        border-radius: 5px;
+      }
+
+      .bg-color--3 { background-color: #77d1c5; }
+      .bg-color--2 { background-color: #CCEAFF; }
+      .bg-color--1 { background-color: #4CAF50; }
+      .bg-color-0 { background-color: #FFFFFF; }
+    </style>
+    <script>
+      var map = [
+        [-2, -2, -2, -2, -2, -1, -2, -2],
+        [-2, 0, 0, 0, 0, 0, 0, -2],
+        [-2, 0, -2, -2, -2, -2, 0, -2],
+        [-2, 0, -2, 0, -2, 0, 0, -2],
+        [-2, 0, -2, 0, -2, -2, 0, -2],
+        [-2, 0, -2, 0, -2, 0, 0, -2],
+        [-2, 0, 0, 0, 0, 0, 0, -2],
+        [-2, -2, -2, -2, -2, -2, -2, -2]
+      ];
+
+      var moveI = 3;
+      var moveJ = 3;
+
+      $(document).ready(function() {
+        // calculate cost from (0, 5)
+        calculateCost(1, 5, 1);
+
+        drawMap();
+      });
+
+      function calculateCost(i, j, incr) {
+        //console.log("entry! "+ i + "/" + j + " = " + map[i][j] + " (" + incr + ")");
+
+        if ((map[i][j] == 0) || (map[i][j] > 0 && map[i][j] > incr)) {
+          map[i][j] = incr;
+
+          incr += 1;
+          calculateCost(i-1, j, incr);
+          calculateCost(i+1, j, incr);
+          calculateCost(i, j-1, incr);
+          calculateCost(i, j+1, incr);
+        }
+        //console.log("exit!" + i + j);
+      }
+
+      function drawMap() {
+        var content = "";
+        var item = 0;
+        var clazz = 0;
+        for (var i = 0 ; i < map.length ; i++) {
+          i != 0 ? content += "</div>" : "";
+          content += "<div>";
+
+          for (var j = 0 ; j < map[i].length ; j++) {
+            item = map[i][j];
+            if (item >= 0) {
+              clazz = 0;
+            } else {
+              clazz = item;
+            }
+
+            if (i==3 && j == 3) {
+              clazz = -3;
+            }
+
+            content += "<span id='" + (i + "" + j) + "' class='box bg-color-" + clazz + "'>" + item + "</span>";
+          }
+        }
+
+        $("#cont").html(content);
+      }
+
+      function start() {
+        setInterval(move, 1000);
+      }
+
+      function move(i, j, value) {
+        //console.log(i +"/"+ j + " = " + value);
+
+        var i = moveI;
+        var j = moveJ;
+        var value = map[moveI][moveJ];
+        var nextMove = value - 1;
+
+        if ( map[i-1][j] == nextMove) {
+          moveI = i-1;
+          moveJ = j;
+        } else if (map[i+1][j] == nextMove) {
+          moveI = i+1;
+          moveJ = j;
+        } else if (map[i][j-1] == nextMove) {
+          moveI = i;
+          moveJ = j-1;
+        } else if (map[i][j+1] == nextMove) {
+          moveI = i;
+          moveJ = j+1;
+        }
+
+        //console.log(moveI +"/"+ moveJ + " = " + map[moveI][moveJ]);
+        $("#"+ i + "" + j).removeClass("box bg-color--3").addClass("box bg-color-0");
+        $("#" + moveI + "" + moveJ).removeClass("box bg-color-0").addClass("box bg-color--3");
+      }
+    </script>
+  </head>
+  <body>
+    <div id="cont"></div>
+    <button onclick="start()">click</button>
+  </body>
+</html>

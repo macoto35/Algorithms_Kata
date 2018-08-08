@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BFS</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script>
+      class Queue {
+        constructor() {
+          this.items = [];
+        }
+        enqueue(obj) {
+          this.items.push(obj);
+        }
+        dequeue() {
+          return this.items.shift();
+        }
+        isEmpty() {
+          return this.items.length === 0;
+        }
+      }
+
+      function doBFS(adjList, source) {
+        // init return array
+        var bfsInfo = [];
+
+        for(var i = 0 ; i < adjList.length ; i++) {
+          bfsInfo[i] = {
+            distance: null,
+            predecessor: null
+          }
+        }
+
+        bfsInfo[source].distance = 0;
+
+        // init queue
+        var queue = new Queue();
+        queue.enqueue(source);
+
+        // BFS logic
+        while( !queue.isEmpty() ) {
+          var vertex = queue.dequeue();
+
+          for(var i = 0 ; i < adjList[vertex].length ; i++) {
+            var neighbour = adjList[vertex][i];
+
+            if ( bfsInfo[neighbour].distance === null ) {
+              bfsInfo[neighbour].distance = bfsInfo[vertex].distance + 1;
+              bfsInfo[neighbour].predecessor = vertex;
+              queue.enqueue(neighbour);
+            }
+          }
+        }
+
+        return bfsInfo;
+      }
+
+      var adjList = [
+        [1],
+        [0, 4, 5],
+        [3, 4, 5],
+        [2, 6],
+        [1, 2],
+        [1, 2, 6],
+        [3, 5],
+        []
+      ];
+
+      var bfsInfo = doBFS(adjList, 3);
+      for (var i = 0 ; i < bfsInfo.length ; i++) {
+        console.log("vertex " + i + ": distance = " + bfsInfo[i].distance + ", predecessor = " + bfsInfo[i].predecessor);
+      }
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
