@@ -5,5 +5,5 @@
 /java/out/
 
 # c exe/obj #
-/c++/*.exe
-/c++/*.obj
+*.exe
+*.obj
