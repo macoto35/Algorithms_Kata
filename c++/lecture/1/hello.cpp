@@ -3,9 +3,10 @@
 using namespace std;
 
 /*
-cl /EHsc a.cpp
+https://m.post.naver.com/viewer/postView.nhn?volumeNo=16964&memberNo=37462&clipNo=0
 
-/EHsc: enable c++ exception handling
+cl /EHsc a.cpp
+-> /EHsc: enable c++ exception handling
 */
 int main(void)
 {
