@@ -6,6 +6,7 @@ using namespace std;
 Access Specifier
 
 specifier | same class | derived(child) class | outside the class |
+-------------------------------------------------------------------
 private   | Y          | N                    | N                 |
 protected | Y          | Y                    | N                 |
 public    | Y          | Y                    | Y                 |
