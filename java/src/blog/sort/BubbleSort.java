@@ -11,7 +11,7 @@ public class BubbleSort {
             swapped = false;
 
             for (int j = 0; j < i; j++) {
-                System.out.println("inner for, idx = " + j);
+                System.out.println("--->inner for, idx = " + j);
                 if (arr[j] > arr[j+1]) {
                     this.swap(arr, j, j+1);
                     swapped = true;
@@ -43,7 +43,7 @@ public class BubbleSort {
             System.out.println("outer for, idx = " + i);
             newi = 0;
             for (int j = 0; j < i; j++) {
-                System.out.println("inner for, idx = " + j);
+                System.out.println("--->inner for, idx = " + j);
                 if (arr[j] > arr[j+1]) {
                     this.swap(arr, j, j+1);
                     newi = j;
@@ -60,8 +60,8 @@ public class BubbleSort {
     }
 
     public static void main(String[] args) {
-        int[] arr1 = {6, 8, 1, 3, 7, 2, 9, 5, 4};
-        int[] arr2 = new int[9];
+        int[] arr1 = {2, 3, 1, 4, 5};
+        int[] arr2 = new int[5];
         System.arraycopy(arr1, 0, arr2, 0, arr1.length);
 
         BubbleSort bs = new BubbleSort();
