@@ -1,5 +1,8 @@
 package blog.sort;
 
+/*
+Merge Sort - split and merge, time: o(n log n), space: O(n), O(1) with linked list
+*/
 public class MergeSort {
 
     public void topDown (int[] b, int[] a, int st, int ed) {
