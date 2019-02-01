@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-public class LinkedListDs {
+public class LinkedListApi {
 
     private LinkedList<Integer> getLinkedList() {
         // {4, 8, 9, 2, 1, 3, 5, 6, 7}
@@ -20,11 +20,11 @@ public class LinkedListDs {
         return list;
     }
 
-    public Integer[] apiAdd() {
+    public Integer[] add() {
         return this.getLinkedList().toArray(new Integer[]{});
     }
 
-    public Integer[] apiRemove() {
+    public Integer[] remove() {
         LinkedList<Integer> list = new LinkedList<>();
         // {1,7,7,2,3,7,7,4,5,6,7,2,3,7}
         list.addAll(new ArrayList<Integer>(){{ add(1); add(7); add(7); add(2); add(3); add(7); add(7); add(4); add(5); add(6); add(7); add(2); add(3); add(7); }});
@@ -40,14 +40,14 @@ public class LinkedListDs {
         return list.toArray(new Integer[]{});
     }
 
-    public Integer[] apiRemoveAll() {
+    public Integer[] removeAll() {
         LinkedList<Integer> list = this.getLinkedList();
         list.clear();
 
         return list.toArray(new Integer[]{});
     }
 
-    public Integer[] apiGet() {
+    public Integer[] get() {
         // {4, 8, 9, 2, 1, 3, 5, 6, 7, 5}
         LinkedList<Integer> list = this.getLinkedList();
         list.add(5);
@@ -65,7 +65,7 @@ public class LinkedListDs {
         return result;
     }
 
-    public Integer apiEtc() {
+    public Integer etc() {
         LinkedList<Integer> list = new LinkedList<Integer>();
 
         // {2, 1, 3}
@@ -79,7 +79,7 @@ public class LinkedListDs {
         return list.element();
     }
 
-    public Integer[] apiQueue() {
+    public Integer[] queue() {
         // {4, 8, 9, 2, 1, 3, 5, 6, 7}
         LinkedList<Integer> list = this.getLinkedList();
         Integer[] result = new Integer[6];
@@ -95,7 +95,7 @@ public class LinkedListDs {
         return result;
     }
 
-    public Integer[] apiStack() {
+    public Integer[] stack() {
         LinkedList<Integer> list = new LinkedList<Integer>();
 
         // {1, 2, 3, 4, 5}
@@ -109,7 +109,7 @@ public class LinkedListDs {
         return result;
     }
 
-    public Integer[] apiDescIterator() {
+    public Integer[] descIterator() {
         LinkedList<Integer> list = this.getLinkedList();
         List<Integer> result = new ArrayList<>();
 
@@ -119,12 +119,5 @@ public class LinkedListDs {
         }
 
         return result.toArray(new Integer[]{});
-    }
-
-    public Node getSimpleNode() {
-        Node second = new Node(2, null);
-        Node first = new Node(1, second);
-
-        return first;
     }
 }
