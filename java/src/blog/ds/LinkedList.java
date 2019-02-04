@@ -81,6 +81,10 @@ public class LinkedList {
             Node node = new Node(input, null);
             node.next = current.next;
             current.next = node;
+
+            if (node.next == null)
+                this.tail = node;
+
             this.length++;
         }
     }

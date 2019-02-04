@@ -68,5 +68,9 @@ class LinkedList:
             node = Node(input)
             node.next = current.next
             current.next = node
+
+            if (node.next is None):
+                self.tail = node
+
             self.length += 1
 
