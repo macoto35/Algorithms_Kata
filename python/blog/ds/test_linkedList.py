@@ -48,6 +48,75 @@ class LinkedListTest(unittest.TestCase):
         
         self.assertEqual('1,2,4,3', self.list.toString())
 
+    def _addNodes(self):
+        self.list.addLast(1)
+        self.list.addLast(2)
+        self.list.addLast(3)
+        self.list.addLast(4)
+        self.list.addLast(5)
+
+    def test_removeFirst(self):
+        self._addNodes();
+
+        self.assertEqual(1, self.list.removeFirst())
+        self.assertEqual(2, self.list.removeFirst())
+        self.assertEqual(3, self.list.removeFirst())
+        self.assertEqual(4, self.list.removeFirst())
+        self.assertEqual(5, self.list.removeFirst())
+        self.assertIsNone(self.list.removeFirst())
+
+    def test_remove(self):
+        self._addNodes()
+
+        self.assertIsNone(self.list.remove(5))
+        self.assertEqual(5, self.list.remove(4))
+        self.assertEqual(1, self.list.remove(0))
+        self.assertEqual(3, self.list.remove(1))
+        self.assertEqual(4, self.list.remove(1))
+        self.assertEqual(2, self.list.remove(0))
+
+    def test_removeLast(self):
+        self._addNodes()
+
+        self.assertEqual(5, self.list.removeLast())
+        self.assertEqual(4, self.list.removeLast())
+        self.assertEqual(3, self.list.removeLast())
+        self.assertEqual(2, self.list.removeLast())
+        self.assertEqual(1, self.list.removeLast())
+        self.assertIsNone(self.list.removeLast())
+
+    def test_size(self):
+        self.assertEqual(0, self.list.size())
+
+        self._addNodes()
+        self.assertEqual(5, self.list.size())
+
+    def test_empty(self):
+        self.assertEqual(True, self.list.empty())
+        
+        self._addNodes()
+        self.assertEqual(False, self.list.empty())
+
+    def test_get(self):
+        self._addNodes()
+
+        self.assertIsNone(self.list.get(-1))
+        self.assertEqual(1, self.list.get(0))
+        self.assertEqual(2, self.list.get(1))
+        self.assertEqual(3, self.list.get(2))
+        self.assertEqual(4, self.list.get(3))
+        self.assertEqual(5, self.list.get(4))
+        self.assertIsNone(self.list.get(5))
+    
+    def test_indexOf(self):
+        self._addNodes()
+
+        self.assertEqual(0, self.list.indexOf(1))
+        self.assertEqual(1, self.list.indexOf(2))
+        self.assertEqual(2, self.list.indexOf(3))
+        self.assertEqual(3, self.list.indexOf(4))
+        self.assertEqual(4, self.list.indexOf(5))
+        self.assertEqual(-1, self.list.indexOf(6))
 
 if __name__ == '__main__':
     unittest.main()
