@@ -1,6 +1,6 @@
 from node import Node
 
-class LinkedList:
+class SinglyLinkedList:
     head = None
     tail = None
     length = 0

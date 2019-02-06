@@ -2,7 +2,7 @@ package blog.ds;
 
 import java.util.StringJoiner;
 
-public class LinkedList {
+public class SinglyLinkedList {
     Node head = null;
 
     Node tail = null;

@@ -9,7 +9,7 @@ class Node {
 		Node(int, Node*);
 };
 
-class LinkedList {
+class SinglyLinkedList {
 	private:
 		Node* head = NULL;
 		Node* tail = NULL;
@@ -38,7 +38,7 @@ Node::Node(int d, Node* n)
 	this->next = n;
 }
 
-void LinkedList::toString()
+void SinglyLinkedList::toString()
 {
 	Node* tmp = this->head;
 	for (int i = 0; i < length; i++) {
@@ -48,7 +48,7 @@ void LinkedList::toString()
 	cout << endl;
 }
 
-void LinkedList::tearDown()
+void SinglyLinkedList::tearDown()
 {
 	Node* tmp = this->head;
 	Node* next;
@@ -62,7 +62,7 @@ void LinkedList::tearDown()
 	this->tail = NULL;
 }
 
-void LinkedList::addFirst(int input)
+void SinglyLinkedList::addFirst(int input)
 {
 	Node* node = new Node(input, NULL);
 
@@ -76,7 +76,7 @@ void LinkedList::addFirst(int input)
 	this->length++;
 }
 
-void LinkedList::addLast(int input)
+void SinglyLinkedList::addLast(int input)
 {
 	Node* node = new Node(input, NULL);
 
@@ -90,7 +90,7 @@ void LinkedList::addLast(int input)
 	this->length++;
 }
 
-Node* LinkedList::getNode(int idx)
+Node* SinglyLinkedList::getNode(int idx)
 {
 	Node* tmp = this->head;
 	for (int i = 0; i < idx; i++) {
@@ -102,7 +102,7 @@ Node* LinkedList::getNode(int idx)
 	return tmp;
 }
 
-void LinkedList::addFront(int input, int idx)
+void SinglyLinkedList::addFront(int input, int idx)
 {
 	if (idx == 0) {
 		this->addFirst(input);
@@ -118,7 +118,7 @@ void LinkedList::addFront(int input, int idx)
 	}
 }
 
-void LinkedList::addBack(int input, int idx)
+void SinglyLinkedList::addBack(int input, int idx)
 {
 	if (idx >= this->length) {
 		this->addLast(input);
@@ -136,7 +136,7 @@ void LinkedList::addBack(int input, int idx)
 	}
 }
 
-int LinkedList::removeFirst()
+int SinglyLinkedList::removeFirst()
 {
 	if (this->empty()) {
 		return -1;
@@ -155,7 +155,7 @@ int LinkedList::removeFirst()
 	}
 }
 
-int LinkedList::remove(int idx)
+int SinglyLinkedList::remove(int idx)
 {
 	if (idx == 0) {
 		return this->removeFirst();
@@ -177,31 +177,31 @@ int LinkedList::remove(int idx)
 	}
 }
 
-int LinkedList::removeLast()
+int SinglyLinkedList::removeLast()
 {
 	if (empty())
 		return -1;
 	return this->remove(this->length - 1);
 }
 
-bool LinkedList::empty()
+bool SinglyLinkedList::empty()
 {
 	return this->head == NULL;
 }
 
-int LinkedList::size()
+int SinglyLinkedList::size()
 {
 	return this->length;
 }
 
-int LinkedList::get(int idx)
+int SinglyLinkedList::get(int idx)
 {
 	if (idx < 0 || idx >= this->length)
 		return -1;
 	return this->getNode(idx)->data;
 }
 
-int LinkedList::indexOf(int data)
+int SinglyLinkedList::indexOf(int data)
 {
 	Node* tmp = this->head;
 	for (int i = 0; i < this->length; i++) {
@@ -212,7 +212,7 @@ int LinkedList::indexOf(int data)
 	return -1;
 }
 
-void addFirstTest(LinkedList list)
+void addFirstTest(SinglyLinkedList list)
 {
 	// add first - 4,3,2,1
 	list.addFirst(1);
@@ -225,7 +225,7 @@ void addFirstTest(LinkedList list)
 	list.tearDown();
 }
 
-void addLastTest(LinkedList list)
+void addLastTest(SinglyLinkedList list)
 {
 	// add last - 1,2,3,4
 	list.addLast(1);
@@ -238,7 +238,7 @@ void addLastTest(LinkedList list)
 	list.tearDown();
 }
 
-void addFrontTest(LinkedList list)
+void addFrontTest(SinglyLinkedList list)
 {
 	// add front - 1,3,4,2
 	list.addFront(1, 0);
@@ -251,7 +251,7 @@ void addFrontTest(LinkedList list)
 	list.tearDown();
 }
 
-void addBackTest(LinkedList list)
+void addBackTest(SinglyLinkedList list)
 {
 	// add back - 1,2,4,3
 	list.addBack(1, 0);
@@ -264,7 +264,7 @@ void addBackTest(LinkedList list)
 	list.tearDown();
 }
 
-void removeFirstTest(LinkedList list)
+void removeFirstTest(SinglyLinkedList list)
 {
 	list.addLast(1);
 	list.addLast(2);
@@ -282,7 +282,7 @@ void removeFirstTest(LinkedList list)
 	list.tearDown();
 }
 
-void removeTest(LinkedList list)
+void removeTest(SinglyLinkedList list)
 {
 	list.addLast(1);
 	list.addLast(2);
@@ -300,7 +300,7 @@ void removeTest(LinkedList list)
 	list.tearDown();
 }
 
-void removeLastTest(LinkedList list)
+void removeLastTest(SinglyLinkedList list)
 {
 	list.addLast(1);
 	list.addLast(2);
@@ -318,7 +318,7 @@ void removeLastTest(LinkedList list)
 	list.tearDown();
 }
 
-void emptyTest(LinkedList list)
+void emptyTest(SinglyLinkedList list)
 {
 	printf("empty: %s ", list.empty()? "true" : "false");
 
@@ -328,7 +328,7 @@ void emptyTest(LinkedList list)
 	list.tearDown();
 }
 
-void sizeTest(LinkedList list)
+void sizeTest(SinglyLinkedList list)
 {
 	printf("size: %d ", list.size());
 
@@ -338,7 +338,7 @@ void sizeTest(LinkedList list)
 	list.tearDown();
 }
 
-void getTest(LinkedList list)
+void getTest(SinglyLinkedList list)
 {
 	list.addLast(1);
 	list.addLast(2);
@@ -357,7 +357,7 @@ void getTest(LinkedList list)
 	list.tearDown();
 }
 
-void indexOfTest(LinkedList list)
+void indexOfTest(SinglyLinkedList list)
 {
 	list.addLast(1);
 	list.addLast(2);
@@ -377,7 +377,7 @@ void indexOfTest(LinkedList list)
 
 void main()
 {
-	LinkedList list;
+	SinglyLinkedList list;
 	
         addFirstTest(list);
 	addLastTest(list);
