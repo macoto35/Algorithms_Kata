@@ -69,6 +69,29 @@ class TestUnorderedList(unittest.TestCase):
         self.assertEqual(0, self.l.index(31))
         self.assertEqual(1, self.l.index(77))
 
+    def test_dupitem(self):
+        self.l.append(3)
+        self.l.append(3)
+        self.l.append(2)
+        self.l.append(3)
+
+        self.assertEqual(4, self.l.size())
+        self.l.remove(3)
+        self.assertTrue(self.l.search(3))
+        self.assertEqual(0, self.l.index(3))
+        self.assertEqual('[3, 2, 3]', self.l.__str__())
+
+    def test_slice(self):
+        self.assertEqual([], self.l.slice(0, 5))
+        # 1 2 3 4 5
+        self.l.append(1)
+        self.l.append(2)
+        self.l.append(3)
+        self.l.append(4)
+        self.l.append(5)
+        self.assertEqual([1, 2], self.l.slice(0, 2))
+        self.assertEqual([3, 4, 5], self.l.slice(2, 5))
+
 
 if __name__ == '__main__':
     unittest.main()

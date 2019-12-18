@@ -5,6 +5,12 @@ class TestOrderedList(unittest.TestCase):
     def setUp(self):
         self.ol = OrderedList()
 
+    def test_str(self):
+        self.ol.add(1)
+        self.ol.add(2)
+        self.ol.add(3)
+        self.assertEqual('[1, 2, 3]', self.ol.__str__())
+
     def test_isEmpty(self):
         self.assertTrue(self.ol.isEmpty())
         self.ol.add(1)
@@ -24,8 +30,11 @@ class TestOrderedList(unittest.TestCase):
 
     def test_search(self):
         self.ol.add(1)
+        self.ol.add(4)
+        self.ol.add(9)
         self.assertTrue(self.ol.search(1))
         self.assertFalse(self.ol.search(2))
+        self.assertFalse(self.ol.search(5))
 
     def test_add(self):
         self.ol.add(5)
@@ -67,10 +76,21 @@ class TestOrderedList(unittest.TestCase):
         self.ol.add(3)
         self.ol.add(7)
         self.ol.add(6)
-        self.assertEqual(6, self.ol.pop_pos(2))
-        self.assertEqual(7, self.ol.pop_pos(2))
-        self.assertEqual(3, self.ol.pop_pos(0))
-        self.assertEqual(5, self.ol.pop_pos(0))
+        self.assertEqual(6, self.ol.pop(2))
+        self.assertEqual(7, self.ol.pop(2))
+        self.assertEqual(3, self.ol.pop(0))
+        self.assertEqual(5, self.ol.pop(0))
+
+    def test_slice(self):
+        self.assertEqual([], self.ol.slice(0, 5))
+        # 1 2 3 4 5
+        self.ol.add(1)
+        self.ol.add(2)
+        self.ol.add(3)
+        self.ol.add(4)
+        self.ol.add(5)
+        self.assertEqual([1, 2], self.ol.slice(0, 2))
+        self.assertEqual([3, 4, 5], self.ol.slice(2, 5))
 
 if __name__ == '__main__':
     unittest.main()

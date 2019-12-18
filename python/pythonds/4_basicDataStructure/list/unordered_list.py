@@ -1,33 +1,18 @@
 from node import Node
+from list import List
 
-class UnorderedList:
-    def __init__(self):
-        self.head = None
-        self.tail = None
-
-    def isEmpty(self):
-        return self.head is None
-
-    def size(self):
-        count = 0
-        current = self.head 
-        while current is not None:
-            count += 1
-            current = current.getNext()
-        
-        return count
-
-    def search(self, item):
-        return self.index(item) is not None
-
+class UnorderedList(List):
     def index(self, item):
         idx = 0
         current = self.head
+        
         while current is not None:
             if item == current.getData():
                 return idx
+            
             current = current.getNext()
             idx += 1
+        
         return None
 
     def add(self, data):
@@ -38,6 +23,7 @@ class UnorderedList:
 
     def insert(self, data, idx = -1):
         newnode = Node(data)
+        self.length += 1
         
         if idx == 0 or self.head is None:
             # add front
@@ -63,38 +49,4 @@ class UnorderedList:
                 previous = current
                 current = current.getNext()
                 i += 1
-
-    def remove(self, item):
-        found = False
-        previous = None
-        current = self.head
-        
-        while current is not None:
-            if item == current.getData():
-                found = True
-                break
-            previous = current
-            current = current.getNext()
-        
-        if found:
-            if previous is None:
-                self.head = current.getNext()
-            else:
-                previous.setNext(current.getNext())
-                if current.getNext() is None:
-                    self.tail = previous
-            current = None
-
-    def pop(self, idx = -1):
-        i = 0
-        current = self.head
-        
-        while current.getNext() is not None:
-            if i == idx:
-                break
-            current = current.getNext()
-            i += 1
-
-        self.remove(current.getData())
-        
-
+ 
