@@ -3,6 +3,7 @@ from random import randint
 
 t = turtle.Turtle()
 w = turtle.Screen()
+t.left(90)
 
 def tree(branchLen, branchWidth, t):
     if branchLen > 5:
@@ -12,14 +13,18 @@ def tree(branchLen, branchWidth, t):
         else:
             t.pencolor("brown")
 
+        t.down()
         t.forward(branchLen)
-        t.right(20)
+        angle = randint(20, 40)
+        t.right(angle)
         tree(branchLen - randint(10, 15), branchWidth - 1, t)
-        t.left(40)
+        t.left(angle * 2)
         tree(branchLen - randint(10, 15), branchWidth - 1, t)
         
-        t.right(20)
+        t.right(angle)
+        t.up()
         t.backward(branchLen)
 
 tree(75, 10, t)
 w.exitonclick()
+

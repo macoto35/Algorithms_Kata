@@ -53,8 +53,10 @@ print(dpMakeChange([1,5,10,25], 123, [0]*124), time.time() - start)
 '''
 
 def main():
-    amount = 123
-    coinValueList = [1, 5, 10, 21, 25]
+    #amount = 123
+    #coinValueList = [1, 5, 10, 21, 25]
+    amount = 33
+    coinValueList = [1, 5, 8, 10, 25]
     coinCount = [0] * (amount + 1)
     coinsUsed = [0] * (amount + 1)
 
