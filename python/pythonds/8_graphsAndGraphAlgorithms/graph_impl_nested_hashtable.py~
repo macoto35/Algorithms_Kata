@@ -1,3 +1,0 @@
-class NestedHashTable:
-    def __init__(self):
-        pass
